@@ -7,6 +7,6 @@
 
 ## Usage
 
-Be sure your Cassandrq server is running at localhost with default port.
+Be sure your Cassandra server is running at localhost with default port.
 
-Then run `node index.js` to generate run the script.
+Then run `node index.js` to run the script.
