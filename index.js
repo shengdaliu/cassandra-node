@@ -34,6 +34,6 @@ rl.on('line', function (line) {
     client.execute(query, params, {
             prepare: true
         })
-        .then(result => console.log('Results: %s', result));
+        // .then(result => console.log('Results: %s', JSON.stringify(result)));
 });
 
