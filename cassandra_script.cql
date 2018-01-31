@@ -1,9 +1,14 @@
 CREATE KEYSPACE IF NOT EXISTS stocksexchange WITH REPLICATION = { 'class': 'SimpleStrategy', 'replication_factor': 3};
 
+DROP TABLE stocks;
+DROP TYPE IF EXISTS description;
+DROP TYPE IF EXISTS ratio;
+DROP TYPE IF EXISTS performance;
+
 CREATE TYPE IF NOT EXISTS description (
-	Country VARCHAR,
-	Sector VARCHAR,
-	Industry VARCHAR
+	country VARCHAR,
+	sector VARCHAR,
+	industry VARCHAR
 );
 
 CREATE TYPE IF NOT EXISTS ratio (
@@ -12,10 +17,10 @@ CREATE TYPE IF NOT EXISTS ratio (
 );
 
 CREATE TYPE IF NOT EXISTS performance (
-	Year DOUBLE,
-	HalfYear DOUBLE,
-	Month DOUBLE,
-	Week DOUBLE
+	year DOUBLE,
+	halfyear DOUBLE,
+	month DOUBLE,
+	week DOUBLE
 );
 
 CREATE TABLE IF NOT EXISTS stocks (id VARCHAR, 
@@ -38,7 +43,6 @@ CREATE TABLE IF NOT EXISTS stocks (id VARCHAR,
 	Performance frozen<performance>,
 	PRIMARY KEY (id)
 );
-
 
 -- INSERT INTO stocks (id, Company, Price, EarningDate, Description, TwentyDaySimpleMovingAverage, TwoHundredDaySimpleMovingAverage, FiftyDay, FiftyTwoWeek, AnalystRecom, AverageTrueRange, AverageVolume, Beta, Change EPSttm ROI Ratio, Performance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
