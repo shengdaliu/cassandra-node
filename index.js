@@ -31,9 +31,5 @@ rl.on('line', function (line) {
     ];
 
     const query = 'INSERT INTO stocks (id, Company, Price, EarningDate, Description, TwentyDaySimpleMovingAverage, TwoHundredDaySimpleMovingAverage, FiftyDay, FiftyTwoWeek, AnalystRecom, AverageTrueRange, AverageVolume, Beta, Change, EPSttm, ROI, Ratio, Performance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    client.execute(query, params, {
-            prepare: true
-        })
-        // .then(result => console.log('Results: %s', JSON.stringify(result)));
+    client.execute(query, params, { prepare: true });
 });
-
