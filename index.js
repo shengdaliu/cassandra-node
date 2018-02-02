@@ -3,6 +3,7 @@ var async = require('async');
 var fs = require('fs');
 const readline = require('readline');
 
+// This function convert keys of a json collection to lowercase
 function ConvertKeysToLowerCase(obj) {
     var output = {};
     for (i in obj) {
@@ -24,10 +25,12 @@ var client = new cassandra.Client({
     keyspace: 'stocksexchange'
 });
 
+// Streaming the stock.json file
 const rl = readline.createInterface({
     input: fs.createReadStream('stocks.json')
 });
 
+// Read the json file line by line then convert the data and call the insert statement to the cassandra database
 rl.on('line', function (line) {
     var jsonObject = JSON.parse(line);
 
@@ -35,7 +38,7 @@ rl.on('line', function (line) {
     if (jsonObject['Earnings Date'] !== null) {
         date = Date.parse(jsonObject['Earnings Date'].$date);
     }
-    
+
     var description = JSON.parse(JSON.stringify(ConvertKeysToLowerCase(jsonObject.description)));
     var performance = JSON.parse(JSON.stringify(ConvertKeysToLowerCase(jsonObject.performance)).replace("half year", "halfyear"));
 
